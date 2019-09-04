@@ -8,8 +8,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import br.com.caelum.eats.ResourceNotFoundException;
 import br.com.caelum.eats.admin.TipoDeCozinha;
-import br.com.caelum.eats.exception.ResourceNotFoundException;
 import br.com.caelum.eats.restaurante.Restaurante;
 import br.com.caelum.eats.restaurante.RestauranteService;
 import lombok.AllArgsConstructor;

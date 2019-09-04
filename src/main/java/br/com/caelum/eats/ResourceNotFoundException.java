@@ -1,4 +1,4 @@
-package br.com.caelum.eats.exception;
+package br.com.caelum.eats;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

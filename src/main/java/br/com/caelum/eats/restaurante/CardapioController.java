@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.caelum.eats.exception.ResourceNotFoundException;
+import br.com.caelum.eats.ResourceNotFoundException;
 import lombok.AllArgsConstructor;
 
 @RestController

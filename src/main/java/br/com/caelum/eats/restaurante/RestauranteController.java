@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.caelum.eats.exception.ResourceNotFoundException;
+import br.com.caelum.eats.ResourceNotFoundException;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -28,10 +28,16 @@ class RestauranteController {
 		Restaurante restaurante = restauranteRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException());
 		return new RestauranteDto(restaurante);
 	}
-	
+
 	@GetMapping("/restaurantes")
 	public List<RestauranteDto> detalhePorIds(@RequestParam List<Long> ids) {
 		return restauranteRepo.findAllById(ids).stream().map(RestauranteDto::new).collect(Collectors.toList());
+	}
+
+	@GetMapping("/parceiros/restaurantes/do-usuario/{username}")
+	public RestauranteDto detalhaParceiro(@PathVariable("username") String username) {
+		Restaurante restaurante = restauranteRepo.findByUsername(username);
+		return new RestauranteDto(restaurante);
 	}
 
 	@GetMapping("/parceiros/restaurantes/{id}")
@@ -60,8 +66,7 @@ class RestauranteController {
 
 	@GetMapping("/admin/restaurantes/em-aprovacao")
 	public List<RestauranteDto> emAprovacao() {
-		return restauranteRepo.findAllByAprovado(false).stream().map(RestauranteDto::new)
-				.collect(Collectors.toList());
+		return restauranteRepo.findAllByAprovado(false).stream().map(RestauranteDto::new).collect(Collectors.toList());
 	}
 
 	@Transactional
