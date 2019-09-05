@@ -38,6 +38,8 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/actuator/**").permitAll()
 				.antMatchers("/admin/**").hasRole(Role.ROLES.ADMIN.name())
 				.antMatchers(HttpMethod.POST, "/parceiros/restaurantes").permitAll()
+				.antMatchers("/parceiros/restaurantes/do-usuario/{username}").access("@restauranteAuthorizationService.checaUsername(authentication,#username)")
+				.antMatchers("/parceiros/restaurantes/{restauranteId}/**").access("@restauranteAuthorizationService.checaId(authentication,#restauranteId)")
 				.antMatchers("/parceiros/**").hasRole(Role.ROLES.PARCEIRO.name())
 				.anyRequest().authenticated()
 				.and().cors()

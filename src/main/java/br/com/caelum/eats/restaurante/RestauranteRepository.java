@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import br.com.caelum.eats.admin.TipoDeCozinha;
+import br.com.caelum.eats.seguranca.User;
 
 interface RestauranteRepository extends JpaRepository<Restaurante, Long> {
 
@@ -18,6 +19,8 @@ interface RestauranteRepository extends JpaRepository<Restaurante, Long> {
 	Page<Restaurante> findAllByAprovadoAndTipoDeCozinha(boolean aprovado, TipoDeCozinha tipo, Pageable limit);
 
 	Page<Restaurante> findAllByAprovado(boolean aprovado, Pageable limit);
+
+	Restaurante findByUser(User user);
 
 	@Query("select r from Restaurante r where r.user.name = :username")
 	Restaurante findByUsername(String username);
