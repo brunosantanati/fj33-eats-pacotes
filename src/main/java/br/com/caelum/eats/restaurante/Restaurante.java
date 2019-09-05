@@ -14,7 +14,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
-import br.com.caelum.eats.admin.TipoDeCozinha;
+import br.com.caelum.eats.administrativo.TipoDeCozinha;
 import br.com.caelum.eats.seguranca.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -27,8 +27,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import br.com.caelum.eats.admin.TipoDeCozinha;
-import br.com.caelum.eats.admin.TipoDeCozinhaRepository;
+import br.com.caelum.eats.administrativo.TipoDeCozinha;
+import br.com.caelum.eats.administrativo.TipoDeCozinhaRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

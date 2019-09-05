@@ -2,7 +2,7 @@ package br.com.caelum.eats.pagamento;
 
 import java.math.BigDecimal;
 
-import br.com.caelum.eats.admin.FormaDePagamento;
+import br.com.caelum.eats.administrativo.FormaDePagamento;
 import br.com.caelum.eats.pedido.PedidoDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;

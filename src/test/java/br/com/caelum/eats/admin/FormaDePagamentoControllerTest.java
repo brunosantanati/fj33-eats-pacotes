@@ -27,8 +27,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import br.com.caelum.eats.admin.FormaDePagamento;
-import br.com.caelum.eats.admin.FormaDePagamentoRepository;
+import br.com.caelum.eats.administrativo.FormaDePagamento;
+import br.com.caelum.eats.administrativo.FormaDePagamentoRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

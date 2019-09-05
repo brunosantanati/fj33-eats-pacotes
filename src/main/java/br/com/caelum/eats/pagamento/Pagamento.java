@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
-import br.com.caelum.eats.admin.FormaDePagamento;
+import br.com.caelum.eats.administrativo.FormaDePagamento;
 import br.com.caelum.eats.pedido.Pedido;
 import lombok.AllArgsConstructor;
 import lombok.Data;

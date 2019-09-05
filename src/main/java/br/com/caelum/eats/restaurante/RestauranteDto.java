@@ -2,7 +2,7 @@ package br.com.caelum.eats.restaurante;
 
 import java.math.BigDecimal;
 
-import br.com.caelum.eats.admin.TipoDeCozinha;
+import br.com.caelum.eats.administrativo.TipoDeCozinha;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package br.com.caelum.eats.admin;
+package br.com.caelum.eats.administrativo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
