@@ -47,21 +47,21 @@ class RestauranteController {
 	}
 
 	@PostMapping("/parceiros/restaurantes")
-	Restaurante adiciona(@RequestBody Restaurante restaurante) {
+	RestauranteDto adiciona(@RequestBody Restaurante restaurante) {
 		restaurante.setAprovado(false);
 		Restaurante restauranteSalvo = restauranteRepo.save(restaurante);
 		Cardapio cardapio = new Cardapio();
 		cardapio.setRestaurante(restauranteSalvo);
 		cardapioRepo.save(cardapio);
-		return restauranteSalvo;
+		return new RestauranteDto(restauranteSalvo);
 	}
 
 	@PutMapping("/parceiros/restaurantes/{id}")
-	Restaurante atualiza(@RequestBody Restaurante restaurante) {
+	RestauranteDto atualiza(@RequestBody Restaurante restaurante) {
 		Restaurante doBD = restauranteRepo.getOne(restaurante.getId());
 		restaurante.setUser(doBD.getUser());
 		restaurante.setAprovado(doBD.getAprovado());
-		return restauranteRepo.save(restaurante);
+		return new RestauranteDto(restauranteRepo.save(restaurante));
 	}
 
 	@GetMapping("/admin/restaurantes/em-aprovacao")

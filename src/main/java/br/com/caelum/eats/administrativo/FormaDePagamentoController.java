@@ -2,6 +2,7 @@ package br.com.caelum.eats.administrativo;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +21,8 @@ class FormaDePagamentoController {
 	private FormaDePagamentoRepository formaRepo;
 
 	@GetMapping("/formas-de-pagamento")
-	List<FormaDePagamento> lista() {
-		return formaRepo.findAllByOrderByNomeAsc();
+	List<FormaDePagamentoDto> lista() {
+		return formaRepo.findAllByOrderByNomeAsc().stream().map(FormaDePagamentoDto::new).collect(Collectors.toList());
 	}
 
 	@GetMapping("/admin/formas-de-pagamento/tipos")
@@ -30,13 +31,13 @@ class FormaDePagamentoController {
 	}
 
 	@PostMapping("/admin/formas-de-pagamento")
-	FormaDePagamento adiciona(@RequestBody FormaDePagamento tipoDeCozinha) {
-		return formaRepo.save(tipoDeCozinha);
+	FormaDePagamentoDto adiciona(@RequestBody FormaDePagamento tipoDeCozinha) {
+		return new FormaDePagamentoDto(formaRepo.save(tipoDeCozinha));
 	}
 
 	@PutMapping("/admin/formas-de-pagamento/{id}")
-	FormaDePagamento atualiza(@RequestBody FormaDePagamento tipoDeCozinha) {
-		return formaRepo.save(tipoDeCozinha);
+	FormaDePagamentoDto atualiza(@RequestBody FormaDePagamento tipoDeCozinha) {
+		return new FormaDePagamentoDto(formaRepo.save(tipoDeCozinha));
 	}
 
 	@DeleteMapping("/admin/formas-de-pagamento/{id}")

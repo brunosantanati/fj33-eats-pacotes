@@ -22,9 +22,9 @@ class CategoriaDoCardapioController {
 	}
 
 	@PostMapping("/parceiros/restaurantes/{idRestaurante}/cardapio/{idCardapio}/categoria")
-	CategoriaDoCardapio cardapioDoRestaurante(@PathVariable("idCardapio") Long idCardapio,
+	CategoriaDoCardapioDto cardapioDoRestaurante(@PathVariable("idCardapio") Long idCardapio,
 			@RequestBody CategoriaDoCardapio categoria) {
-		return repo.save(categoria);
+		return new CategoriaDoCardapioDto(repo.save(categoria));
 	}
 
 }

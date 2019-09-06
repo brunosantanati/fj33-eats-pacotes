@@ -1,6 +1,7 @@
 package br.com.caelum.eats.restaurante;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.caelum.eats.administrativo.FormaDePagamento;
+import br.com.caelum.eats.administrativo.FormaDePagamentoDto;
 import br.com.caelum.eats.restaurante.RestauranteFormaDePagamento.RestauranteFormaDePagamentoId;
 import lombok.AllArgsConstructor;
 
@@ -36,10 +38,10 @@ class RestauranteFormaDePagamentoController {
 	}
 
 	@GetMapping("/restaurantes/{idRestaurante}/formas-de-pagamento")
-	List<FormaDePagamento> lista(@PathVariable("idRestaurante") Long idRestaurante) {
+	List<FormaDePagamentoDto> lista(@PathVariable("idRestaurante") Long idRestaurante) {
 		Restaurante restaurante = new Restaurante();
 		restaurante.setId(idRestaurante);
-		return restauranteFormaDePagamentoRepo.findAllByRestauranteOrderByNomeAsc(restaurante);
+		return restauranteFormaDePagamentoRepo.findAllByRestauranteOrderByNomeAsc(restaurante).stream().map(FormaDePagamentoDto::new).collect(Collectors.toList());
 	}
 
 }

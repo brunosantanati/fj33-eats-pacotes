@@ -1,6 +1,7 @@
 package br.com.caelum.eats.administrativo;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,18 +20,18 @@ class TipoDeCozinhaController {
 	private TipoDeCozinhaRepository repo;
 
 	@GetMapping("/tipos-de-cozinha")
-	List<TipoDeCozinha> lista() {
-		return repo.findAllByOrderByNomeAsc();
+	List<TipoDeCozinhaDto> lista() {
+		return repo.findAllByOrderByNomeAsc().stream().map(TipoDeCozinhaDto::new).collect(Collectors.toList());
 	}
 
 	@PostMapping("/admin/tipos-de-cozinha")
-	TipoDeCozinha adiciona(@RequestBody TipoDeCozinha tipoDeCozinha) {
-		return repo.save(tipoDeCozinha);
+	TipoDeCozinhaDto adiciona(@RequestBody TipoDeCozinhaDto tipoDeCozinhaDto) {
+		return new TipoDeCozinhaDto(repo.save(tipoDeCozinhaDto.toTipoDeCozinha()));
 	}
 
 	@PutMapping("/admin/tipos-de-cozinha/{id}")
-	TipoDeCozinha atualiza(@RequestBody TipoDeCozinha tipoDeCozinha) {
-		return repo.save(tipoDeCozinha);
+	TipoDeCozinhaDto atualiza(@RequestBody TipoDeCozinhaDto tipoDeCozinhaDto) {
+		return new TipoDeCozinhaDto(repo.save(tipoDeCozinhaDto.toTipoDeCozinha()));
 	}
 
 	@DeleteMapping("/admin/tipos-de-cozinha/{id}")

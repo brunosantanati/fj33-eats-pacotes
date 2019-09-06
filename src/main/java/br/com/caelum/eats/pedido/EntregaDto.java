@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 class EntregaDto {
 
 	private Long id;
-	private Cliente cliente;
+	private ClienteDto cliente;
 	private String cep;
 	private String endereco;
 	private String complemento;
 
 	EntregaDto(Entrega entrega) {
-		this(entrega.getId(), entrega.getCliente(), entrega.getCep(), entrega.getEndereco(), entrega.getComplemento());
+		this(entrega.getId(), new ClienteDto(entrega.getCliente()), entrega.getCep(), entrega.getEndereco(), entrega.getComplemento());
 	}
 
 }
