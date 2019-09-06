@@ -43,7 +43,7 @@ public class User implements UserDetails {
 	@ManyToMany(fetch = FetchType.EAGER) @JsonIgnore
 	private List<Role> authorities = new ArrayList<>();
 	
-	public User(String name, String password) {
+	User(String name, String password) {
 		this.name = name;
 		this.password = password;
 	}
@@ -53,7 +53,7 @@ public class User implements UserDetails {
 		return authorities;
 	}
 	
-	public List<String> getRoles() {
+	List<String> getRoles() {
 		return authorities.stream().map(Role::getRole).collect(Collectors.toList());
 	}
 
@@ -91,7 +91,7 @@ public class User implements UserDetails {
 		return getRoles().contains(role.name());
 	}
 
-	public void addRole(Role.ROLES role) {
+	void addRole(Role.ROLES role) {
 		this.authorities.add(new Role(role.asAuthority()));
 	}
 

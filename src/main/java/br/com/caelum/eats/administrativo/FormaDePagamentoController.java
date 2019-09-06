@@ -20,27 +20,27 @@ class FormaDePagamentoController {
 	private FormaDePagamentoRepository formaRepo;
 
 	@GetMapping("/formas-de-pagamento")
-	public List<FormaDePagamento> lista() {
+	List<FormaDePagamento> lista() {
 		return formaRepo.findAllByOrderByNomeAsc();
 	}
 
 	@GetMapping("/admin/formas-de-pagamento/tipos")
-	public List<FormaDePagamento.Tipo> tipos() {
+	List<FormaDePagamento.Tipo> tipos() {
 		return Arrays.asList(FormaDePagamento.Tipo.values());
 	}
 
 	@PostMapping("/admin/formas-de-pagamento")
-	public FormaDePagamento adiciona(@RequestBody FormaDePagamento tipoDeCozinha) {
+	FormaDePagamento adiciona(@RequestBody FormaDePagamento tipoDeCozinha) {
 		return formaRepo.save(tipoDeCozinha);
 	}
 
 	@PutMapping("/admin/formas-de-pagamento/{id}")
-	public FormaDePagamento atualiza(@RequestBody FormaDePagamento tipoDeCozinha) {
+	FormaDePagamento atualiza(@RequestBody FormaDePagamento tipoDeCozinha) {
 		return formaRepo.save(tipoDeCozinha);
 	}
 
 	@DeleteMapping("/admin/formas-de-pagamento/{id}")
-	public void remove(@PathVariable("id") Long id) {
+	void remove(@PathVariable("id") Long id) {
 		formaRepo.deleteById(id);
 	}
 

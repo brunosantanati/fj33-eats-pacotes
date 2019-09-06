@@ -27,13 +27,13 @@ class PagamentoController {
 	private PedidoService pedidos;
 
 	@GetMapping("/{id}")
-	public PagamentoDto detalha(@PathVariable Long id) {
+	PagamentoDto detalha(@PathVariable("id") Long id) {
 		Pagamento pagamento = pagamentoRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException());
 		return new PagamentoDto(pagamento);
 	}
 
 	@PostMapping
-	public ResponseEntity<PagamentoDto> cria(@RequestBody Pagamento pagamento, UriComponentsBuilder uriBuilder) {
+	ResponseEntity<PagamentoDto> cria(@RequestBody Pagamento pagamento, UriComponentsBuilder uriBuilder) {
 		pagamento.setStatus(Pagamento.Status.CRIADO);
 		Pagamento salvo = pagamentoRepo.save(pagamento);
 		URI path = uriBuilder.path("/pagamentos/{id}").buildAndExpand(salvo.getId()).toUri();
@@ -41,7 +41,7 @@ class PagamentoController {
 	}
 
 	@PutMapping("/{id}")
-	public PagamentoDto confirma(@PathVariable Long id) {
+	PagamentoDto confirma(@PathVariable("id") Long id) {
 		Pagamento pagamento = pagamentoRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException());
 		pagamento.setStatus(Pagamento.Status.CONFIRMADO);
 		pagamentoRepo.save(pagamento);
@@ -53,7 +53,7 @@ class PagamentoController {
 	}
 
 	@DeleteMapping("/{id}")
-	public PagamentoDto cancela(@PathVariable Long id) {
+	PagamentoDto cancela(@PathVariable("id") Long id) {
 		Pagamento pagamento = pagamentoRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException());
 		pagamento.setStatus(Pagamento.Status.CANCELADO);
 		pagamentoRepo.save(pagamento);

@@ -9,11 +9,11 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class RestauranteAuthorizationService {
+class RestauranteAuthorizationService {
 
 	private RestauranteRepository restauranteRepo;
 
-	public boolean checaId(Authentication authentication, long id) {
+	boolean checaId(Authentication authentication, long id) {
 		User user = (User) authentication.getPrincipal();
 		if (user.isInRole(Role.ROLES.PARCEIRO)) {
 			Restaurante restaurante = restauranteRepo.findByUser(user);
@@ -24,7 +24,7 @@ public class RestauranteAuthorizationService {
 		return false;
 	}
 
-	public boolean checaUsername(Authentication authentication, String username) {
+	boolean checaUsername(Authentication authentication, String username) {
 		User user = (User) authentication.getPrincipal();
 		return user.isInRole(Role.ROLES.PARCEIRO) && user.getName().equals(username);
 	}

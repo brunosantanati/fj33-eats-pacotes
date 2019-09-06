@@ -14,7 +14,7 @@ class CardapioController {
 	private CardapioRepository repo;
 
 	@GetMapping("/restaurantes/{idRestaurante}/cardapio")
-	public CardapioDto cardapioDoRestaurante(@PathVariable("idRestaurante") Long idRestaurante) {
+	CardapioDto cardapioDoRestaurante(@PathVariable("idRestaurante") Long idRestaurante) {
 		Restaurante restaurante = new Restaurante();
 		restaurante.setId(idRestaurante);
 		Cardapio cardapio = repo.findByRestaurante(restaurante);
@@ -22,7 +22,7 @@ class CardapioController {
 	}
 
 	@GetMapping("/restaurantes/{idRestaurante}/cardapio/{idCardapio}")
-	public CardapioDto porId(@PathVariable("idCardapio") Long idCardapio) {
+	CardapioDto porId(@PathVariable("idCardapio") Long idCardapio) {
 		Cardapio cardapio = repo.findById(idCardapio).orElseThrow(() -> new ResourceNotFoundException());
 		return new CardapioDto(cardapio);
 	}

@@ -23,7 +23,7 @@ class AuthenticationController {
 	private UserService userService;
 
 	@PostMapping
-	public ResponseEntity<AuthenticationDto> authenticate(@RequestBody UserInfoDto login) {
+	ResponseEntity<AuthenticationDto> authenticate(@RequestBody UserInfoDto login) {
 		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
 				login.getUsername(), login.getPassword());
 
@@ -40,7 +40,7 @@ class AuthenticationController {
 	}
 	
 	@PostMapping("/parceiro")
-	public Long register(@RequestBody UserInfoDto userInfo) {
+	Long register(@RequestBody UserInfoDto userInfo) {
 		User user = userInfo.toUser();
 		user.addRole(Role.ROLES.PARCEIRO);
 		User salvo = userService.save(user);

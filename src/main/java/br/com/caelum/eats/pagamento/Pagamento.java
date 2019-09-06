@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 @Data
 class Pagamento {
 
-	public static enum Status {
+	static enum Status {
 		CRIADO,
 		CONFIRMADO,
 		CANCELADO;

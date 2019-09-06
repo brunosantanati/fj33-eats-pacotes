@@ -19,22 +19,22 @@ class TipoDeCozinhaController {
 	private TipoDeCozinhaRepository repo;
 
 	@GetMapping("/tipos-de-cozinha")
-	public List<TipoDeCozinha> lista() {
+	List<TipoDeCozinha> lista() {
 		return repo.findAllByOrderByNomeAsc();
 	}
 
 	@PostMapping("/admin/tipos-de-cozinha")
-	public TipoDeCozinha adiciona(@RequestBody TipoDeCozinha tipoDeCozinha) {
+	TipoDeCozinha adiciona(@RequestBody TipoDeCozinha tipoDeCozinha) {
 		return repo.save(tipoDeCozinha);
 	}
 
 	@PutMapping("/admin/tipos-de-cozinha/{id}")
-	public TipoDeCozinha atualiza(@RequestBody TipoDeCozinha tipoDeCozinha) {
+	TipoDeCozinha atualiza(@RequestBody TipoDeCozinha tipoDeCozinha) {
 		return repo.save(tipoDeCozinha);
 	}
 
 	@DeleteMapping("/admin/tipos-de-cozinha/{id}")
-	public void remove(@PathVariable("id") Long id) {
+	void remove(@PathVariable("id") Long id) {
 		repo.deleteById(id);
 	}
 

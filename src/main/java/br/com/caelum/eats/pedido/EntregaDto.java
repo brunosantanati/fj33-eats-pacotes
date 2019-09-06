@@ -2,8 +2,10 @@ package br.com.caelum.eats.pedido;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 class EntregaDto {
 
@@ -13,7 +15,7 @@ class EntregaDto {
 	private String endereco;
 	private String complemento;
 
-	public EntregaDto(Entrega entrega) {
+	EntregaDto(Entrega entrega) {
 		this(entrega.getId(), entrega.getCliente(), entrega.getCep(), entrega.getEndereco(), entrega.getComplemento());
 	}
 

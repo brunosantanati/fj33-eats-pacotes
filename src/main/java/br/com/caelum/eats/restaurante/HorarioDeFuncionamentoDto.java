@@ -5,8 +5,10 @@ import java.time.LocalTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 class HorarioDeFuncionamentoDto {
 
@@ -18,7 +20,7 @@ class HorarioDeFuncionamentoDto {
 
 	private LocalTime horarioDeFechamento;
 
-	public HorarioDeFuncionamentoDto(HorarioDeFuncionamento horario) {
+	HorarioDeFuncionamentoDto(HorarioDeFuncionamento horario) {
 		this(horario.getId(), horario.getDiaDaSemana(), horario.getHorarioDeAbertura(), horario.getHorarioDeFechamento());
 	}
 }

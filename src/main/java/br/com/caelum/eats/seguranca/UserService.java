@@ -23,7 +23,7 @@ public class UserService implements UserDetailsService {
 		return user.orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado: " + username));
 	}
 
-	public User save(User user) {
+	User save(User user) {
 		user.setPassword(encoder.encode(user.getPassword()));
 		return userRepository.save(user);
 	}

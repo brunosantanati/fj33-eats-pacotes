@@ -4,8 +4,10 @@ import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 class AuthenticationDto {
 
@@ -13,7 +15,7 @@ class AuthenticationDto {
 	private List<String> roles;
 	private String token;
 
-	public AuthenticationDto(User user, String jwtToken) {
+	AuthenticationDto(User user, String jwtToken) {
 		this(user.getName(), user.getRoles(), jwtToken);
 	}
 

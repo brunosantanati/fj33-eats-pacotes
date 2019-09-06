@@ -35,7 +35,7 @@ class RestauranteFormaDePagamento {
 	@NoArgsConstructor
 	@AllArgsConstructor
 	@Data
-	public static class RestauranteFormaDePagamentoId implements Serializable {
+	static class RestauranteFormaDePagamentoId implements Serializable {
 		private static final long serialVersionUID = 1L;
 
 		@Column(name = "restaurante_id")

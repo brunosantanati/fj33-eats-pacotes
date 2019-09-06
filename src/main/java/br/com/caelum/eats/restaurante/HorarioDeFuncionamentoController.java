@@ -21,13 +21,13 @@ class HorarioDeFuncionamentoController {
 	private HorarioDeFuncionamentoRepository repo;
 	
 	@GetMapping("/restaurantes/{idRestaurante}/horarios-de-funcionamento/{id}")
-	public HorarioDeFuncionamentoDto detalha(@PathVariable("id") Long id) {
+	HorarioDeFuncionamentoDto detalha(@PathVariable("id") Long id) {
 		HorarioDeFuncionamento horario = repo.findById(id).orElseThrow(() -> new ResourceNotFoundException());
 		return new HorarioDeFuncionamentoDto(horario);
 	}
 
 	@GetMapping("/restaurantes/{idRestaurante}/horarios-de-funcionamento")
-	public List<HorarioDeFuncionamentoDto> lista(@PathVariable("idRestaurante") Long idRestaurante) {
+	List<HorarioDeFuncionamentoDto> lista(@PathVariable("idRestaurante") Long idRestaurante) {
 		Restaurante restaurante = new Restaurante();
 		restaurante.setId(idRestaurante);
 		List<HorarioDeFuncionamento> horariosDoRestaurante = repo.findAllByRestaurante(restaurante);
@@ -35,17 +35,17 @@ class HorarioDeFuncionamentoController {
 	}
 
 	@PostMapping("/parceiros/restaurantes/{idRestaurante}/horarios-de-funcionamento")
-	public HorarioDeFuncionamento adiciona(@RequestBody HorarioDeFuncionamento horarioDeFuncionamento) {
+	HorarioDeFuncionamento adiciona(@RequestBody HorarioDeFuncionamento horarioDeFuncionamento) {
 		return repo.save(horarioDeFuncionamento);
 	}
 
 	@PutMapping("/parceiros/restaurantes/{idRestaurante}/horarios-de-funcionamento/{id}")
-	public HorarioDeFuncionamento atualiza(@RequestBody HorarioDeFuncionamento horarioDeFuncionamento) {
+	HorarioDeFuncionamento atualiza(@RequestBody HorarioDeFuncionamento horarioDeFuncionamento) {
 		return repo.save(horarioDeFuncionamento);
 	}
 
 	@DeleteMapping("/parceiros/restaurantes/{idRestaurante}/horarios-de-funcionamento/{id}")
-	public void remove(@PathVariable("id") Long id) {
+	void remove(@PathVariable("id") Long id) {
 		repo.deleteById(id);
 	}
 

@@ -23,7 +23,7 @@ interface RestauranteRepository extends JpaRepository<Restaurante, Long> {
 	Restaurante findByUser(User user);
 
 	@Query("select r from Restaurante r where r.user.name = :username")
-	Restaurante findByUsername(String username);
+	Restaurante findByUsername(@Param("username") String username);
 	
 	@Modifying(clearAutomatically = true)
 	@Query("update Restaurante r set r.aprovado = true where r.id = :id")

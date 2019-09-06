@@ -24,30 +24,30 @@ class RestauranteController {
 	private CardapioRepository cardapioRepo;
 
 	@GetMapping("/restaurantes/{id}")
-	public RestauranteDto detalha(@PathVariable("id") Long id) {
+	RestauranteDto detalha(@PathVariable("id") Long id) {
 		Restaurante restaurante = restauranteRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException());
 		return new RestauranteDto(restaurante);
 	}
 
 	@GetMapping("/restaurantes")
-	public List<RestauranteDto> detalhePorIds(@RequestParam List<Long> ids) {
+	List<RestauranteDto> detalhePorIds(@RequestParam("ids") List<Long> ids) {
 		return restauranteRepo.findAllById(ids).stream().map(RestauranteDto::new).collect(Collectors.toList());
 	}
 
 	@GetMapping("/parceiros/restaurantes/do-usuario/{username}")
-	public RestauranteDto detalhaParceiro(@PathVariable("username") String username) {
+	RestauranteDto detalhaParceiro(@PathVariable("username") String username) {
 		Restaurante restaurante = restauranteRepo.findByUsername(username);
 		return new RestauranteDto(restaurante);
 	}
 
 	@GetMapping("/parceiros/restaurantes/{id}")
-	public RestauranteDto detalhaParceiro(@PathVariable("id") Long id) {
+	RestauranteDto detalhaParceiro(@PathVariable("id") Long id) {
 		Restaurante restaurante = restauranteRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException());
 		return new RestauranteDto(restaurante);
 	}
 
 	@PostMapping("/parceiros/restaurantes")
-	public Restaurante adiciona(@RequestBody Restaurante restaurante) {
+	Restaurante adiciona(@RequestBody Restaurante restaurante) {
 		restaurante.setAprovado(false);
 		Restaurante restauranteSalvo = restauranteRepo.save(restaurante);
 		Cardapio cardapio = new Cardapio();
@@ -57,7 +57,7 @@ class RestauranteController {
 	}
 
 	@PutMapping("/parceiros/restaurantes/{id}")
-	public Restaurante atualiza(@RequestBody Restaurante restaurante) {
+	Restaurante atualiza(@RequestBody Restaurante restaurante) {
 		Restaurante doBD = restauranteRepo.getOne(restaurante.getId());
 		restaurante.setUser(doBD.getUser());
 		restaurante.setAprovado(doBD.getAprovado());
@@ -65,13 +65,13 @@ class RestauranteController {
 	}
 
 	@GetMapping("/admin/restaurantes/em-aprovacao")
-	public List<RestauranteDto> emAprovacao() {
+	List<RestauranteDto> emAprovacao() {
 		return restauranteRepo.findAllByAprovado(false).stream().map(RestauranteDto::new).collect(Collectors.toList());
 	}
 
 	@Transactional
 	@PatchMapping("/admin/restaurantes/{id}")
-	public void aprova(@PathVariable("id") Long id) {
+	void aprova(@PathVariable("id") Long id) {
 		restauranteRepo.aprovaPorId(id);
 	}
 }

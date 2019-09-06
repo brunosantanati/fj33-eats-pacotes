@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class FormaDePagamento {
 
-	public static enum Tipo {
+	static enum Tipo {
 		CARTAO_CREDITO, CARTAO_DEBITO, VALE_REFEICAO;
 	}
 

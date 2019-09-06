@@ -32,7 +32,7 @@ class RestauranteDto {
 
 	private TipoDeCozinha tipoDeCozinha;
 
-	public RestauranteDto(Restaurante restaurante) {
+	RestauranteDto(Restaurante restaurante) {
 		this(restaurante.getId(), restaurante.getCnpj(), restaurante.getNome(), restaurante.getDescricao(), restaurante.getCep(), restaurante.getEndereco(),
 				restaurante.getTaxaDeEntregaEmReais(), restaurante.getTempoDeEntregaMinimoEmMinutos(),
 				restaurante.getTempoDeEntregaMaximoEmMinutos(), restaurante.getAprovado(),

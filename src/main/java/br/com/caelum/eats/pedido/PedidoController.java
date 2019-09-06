@@ -22,20 +22,20 @@ class PedidoController {
 	private PedidoRepository repo;
 
 	@GetMapping("/pedidos")
-	public List<PedidoDto> lista() {
+	List<PedidoDto> lista() {
 		return repo.findAll().stream()
 				.map(pedido -> new PedidoDto(pedido)).collect(Collectors.toList());
 	}
 
 
 	@GetMapping("/pedidos/{id}")
-	public PedidoDto porId(@PathVariable("id") Long id) {
+	PedidoDto porId(@PathVariable("id") Long id) {
 		Pedido pedido = repo.findById(id).orElseThrow(() -> new ResourceNotFoundException());
 		return new PedidoDto(pedido);
 	}
 
 	@PostMapping("/pedidos")
-	public PedidoDto adiciona(@RequestBody Pedido pedido) {
+	PedidoDto adiciona(@RequestBody Pedido pedido) {
 		pedido.setDataHora(LocalDateTime.now());
 		pedido.setStatus(Pedido.Status.REALIZADO);
 		pedido.getItens().forEach(item -> item.setPedido(pedido));
@@ -45,13 +45,13 @@ class PedidoController {
 	}
 
 	@PutMapping("/pedidos/{id}/status")
-	public PedidoDto atualizaStatus(@RequestBody Pedido pedido) {
+	PedidoDto atualizaStatus(@RequestBody Pedido pedido) {
 		repo.atualizaStatus(pedido.getStatus(), pedido);
 		return new PedidoDto(pedido);
 	}
 
 	@GetMapping("/parceiros/restaurantes/{restauranteId}/pedidos/pendentes")
-	public List<PedidoDto> pendentes(@PathVariable("restauranteId") Long restauranteId) {
+	List<PedidoDto> pendentes(@PathVariable("restauranteId") Long restauranteId) {
 		return repo.doRestauranteSemOsStatus(restauranteId, Arrays.asList(Pedido.Status.REALIZADO, Pedido.Status.ENTREGUE)).stream()
 				.map(pedido -> new PedidoDto(pedido)).collect(Collectors.toList());
 	}

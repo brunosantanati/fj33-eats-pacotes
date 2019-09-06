@@ -39,7 +39,7 @@ public class ItemDoCardapio {
 	@ManyToOne(optional=false)
 	private CategoriaDoCardapio categoria;
 	
-	public BigDecimal getPrecoEfetivo() {
+	BigDecimal getPrecoEfetivo() {
 		return precoPromocional != null ? precoPromocional : preco;
 	}
 }

@@ -16,13 +16,13 @@ class CategoriaDoCardapioController {
 	private CategoriaDoCardapioRepository repo;
 
 	@GetMapping("/restaurantes/{idRestaurante}/cardapio/{idCardapio}/categoria/{idCategoria}")
-	public CategoriaDoCardapioDto categoriaPorId(@PathVariable("idCategoria") Long idCategoria) {
+	CategoriaDoCardapioDto categoriaPorId(@PathVariable("idCategoria") Long idCategoria) {
 		CategoriaDoCardapio categoria = repo.findById(idCategoria).orElseThrow(() -> new ResourceNotFoundException());
 		return new CategoriaDoCardapioDto(categoria);
 	}
 
 	@PostMapping("/parceiros/restaurantes/{idRestaurante}/cardapio/{idCardapio}/categoria")
-	public CategoriaDoCardapio cardapioDoRestaurante(@PathVariable("idCardapio") Long idCardapio,
+	CategoriaDoCardapio cardapioDoRestaurante(@PathVariable("idCardapio") Long idCardapio,
 			@RequestBody CategoriaDoCardapio categoria) {
 		return repo.save(categoria);
 	}

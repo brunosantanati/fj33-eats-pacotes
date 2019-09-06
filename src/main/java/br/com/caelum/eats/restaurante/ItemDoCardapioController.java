@@ -18,23 +18,23 @@ class ItemDoCardapioController {
 	private ItemDoCardapioRepository repo;
 
 	@PostMapping("/parceiros/restaurantes/{idRestaurante}/cardapio/{idCardapio}/categoria/{idCategoria}/item")
-	public ItemDoCardapioDto adicionaItem(@RequestBody ItemDoCardapio item) {
+	ItemDoCardapioDto adicionaItem(@RequestBody ItemDoCardapio item) {
 		return new ItemDoCardapioDto(repo.save(item));
 	}
 
 	@PutMapping("/parceiros/restaurantes/{idRestaurante}/cardapio/{idCardapio}/categoria/{idCategoria}/item/{idItem}")
-	public ItemDoCardapioDto atualizaItem(@RequestBody ItemDoCardapio item) {
+	ItemDoCardapioDto atualizaItem(@RequestBody ItemDoCardapio item) {
 		return new ItemDoCardapioDto(repo.save(item));
 	}
 
 	@GetMapping("/parceiros/restaurantes/{idRestaurante}/cardapio/{idCardapio}/categoria/{idCategoria}/item/{idItem}")
-	public ItemDoCardapioDto itemPorId(@PathVariable("idItem") Long idItem) {
+	ItemDoCardapioDto itemPorId(@PathVariable("idItem") Long idItem) {
 		ItemDoCardapio item = repo.findById(idItem).orElseThrow(() -> new ResourceNotFoundException());
 		return new ItemDoCardapioDto(item);
 	}
 
 	@DeleteMapping("/parceiros/restaurantes/{idRestaurante}/cardapio/{idCardapio}/categoria/{idCategoria}/item/{idItem}")
-	public void removeItem(@PathVariable("idItem") Long idItem) {
+	void removeItem(@PathVariable("idItem") Long idItem) {
 		repo.deleteById(idItem);
 	}
 

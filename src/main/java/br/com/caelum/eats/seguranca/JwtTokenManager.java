@@ -18,13 +18,13 @@ class JwtTokenManager {
 	private String secret;
 	private long expirationInMillis;
 
-	public JwtTokenManager(	@Value("${jwt.secret}") String secret, 
+	JwtTokenManager(	@Value("${jwt.secret}") String secret, 
 							@Value("${jwt.expiration}") long expirationInMillis) {
 		this.secret = secret;
 		this.expirationInMillis = expirationInMillis;
 	}
 
-	public String generateToken(User user) {
+	String generateToken(User user) {
 		final Date now = new Date();
 		final Date expiration = new Date(now.getTime() + this.expirationInMillis);
 		return Jwts.builder()
@@ -36,7 +36,7 @@ class JwtTokenManager {
 				.setExpiration(expiration).signWith(SignatureAlgorithm.HS256, this.secret).compact();
 	}
 
-	public boolean isValid(String jwt) {
+	boolean isValid(String jwt) {
 		try {
 			Jwts.parser().setSigningKey(this.secret).parseClaimsJws(jwt);
 			return true;
@@ -46,7 +46,7 @@ class JwtTokenManager {
 	}
 
 	@SuppressWarnings("unchecked")
-	public User getUserFromToken(String jwt) {
+	User getUserFromToken(String jwt) {
  		Claims claims = Jwts.parser().setSigningKey(this.secret).parseClaimsJws(jwt).getBody();
 		User user = new User();
 		user.setName(claims.get("username", String.class));
